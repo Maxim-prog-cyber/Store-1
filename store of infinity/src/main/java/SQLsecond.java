@@ -9,11 +9,8 @@ public class SQLsecond {
         String password = "root";
         String URL = "jdbc:mysql://localhost:3306/mysql?userSSL=false";
         try (Connection connection = DriverManager.getConnection(URL, name, password)) {
-//            Connection
-//            Statement
-//            ResultSet
             Statement statement = connection.createStatement();
-//            statement.execute("CREATE TABLE  world.ordersInStock ( id int, status char(30),  price int, itemPlace  int)");
+            statement.execute("CREATE TABLE  world.ordersInStock ( id int, status char(30),  price int, itemPlace  char(30))");
             System.out.println("Insert id, status, price and placeId ");
             Scanner scanner = new Scanner((System.in));
             int id = scanner.nextInt();
@@ -21,14 +18,9 @@ public class SQLsecond {
             int price = scanner.nextInt();
             int itemPlace = scanner.nextInt();
 
-            statement.execute("INSERT INTO world.ordersInStock values ('" + id + "', '" + status + "', '" + price +"','"+ itemPlace+ "')");
+            statement.execute("INSERT INTO world.ordersInStock values ('" + id + "', '" + status + "', '" + price + "','" + itemPlace + "')");
             ResultSet resultSet = statement.executeQuery("SELECT  * from world.ordersInStock where id = '" + id + "'");
-
-
         }
-/*        } catch (SQLException throwables) {
-            throwables.printStackTrace();*/
-        }
-
     }
+}
 

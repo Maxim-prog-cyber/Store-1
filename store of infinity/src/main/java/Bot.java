@@ -14,6 +14,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 import java.util.ArrayList;
 
 public class Bot extends TelegramLongPollingBot {
+
     public static void main(String[] args) {
         ApiContextInitializer.init();
         TelegramBotsApi botsApi = new TelegramBotsApi();
@@ -24,12 +25,17 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    public void sendMes(SendMessage sendMessage){
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void onUpdateReceived(Update update) {
         Message msg = update.getMessage();
-
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-
         KeyboardRow first = new KeyboardRow();
         KeyboardRow second = new KeyboardRow();
         ArrayList<KeyboardRow> keyboard = new ArrayList<KeyboardRow>();
@@ -47,22 +53,12 @@ public class Bot extends TelegramLongPollingBot {
             sendMessage.setChatId(msg.getChatId());
             sendMessage.setText("Добро пожаловать в лавку бесконечности.");
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
-
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+            sendMes(sendMessage);
 
             SendMessage sendMessage1 = new SendMessage();
             sendMessage1.setChatId(msg.getChatId());
             sendMessage1.setText("Команда /menu открывает меню.");
-
-            try {
-                execute(sendMessage1);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+            sendMes(sendMessage1);
         }
 //--------------------------------------------------------------------------------------------
         if (msg.getText().equals("Магазин\uD83C\uDF1A")) {
@@ -76,12 +72,7 @@ public class Bot extends TelegramLongPollingBot {
             sendMessage.setChatId(msg.getChatId());
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
             sendMessage.setText("-");
-
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+            sendMes(sendMessage);
         }
 //--------------------------------------------------------------------------------------------
         if (msg.getText().equals("Найти товар\uD83D\uDD0D")) {
@@ -91,12 +82,7 @@ public class Bot extends TelegramLongPollingBot {
             sendMessage.setChatId(msg.getChatId());
             sendMessage.setText("Введи код товара: ");
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
-
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+            sendMes(sendMessage);
         }
 
 //--------------------------------------------------------------------------------------------
@@ -109,12 +95,7 @@ public class Bot extends TelegramLongPollingBot {
             sendMessage.setChatId(msg.getChatId());
             sendMessage.setText("Добро пожаловать в лавку бесконечности.");
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
-
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+            sendMes(sendMessage);
 
         }
 //--------------------------------------------------------------------------------------------
@@ -127,26 +108,19 @@ public class Bot extends TelegramLongPollingBot {
             sendMessage.setChatId(msg.getChatId());
             sendMessage.setText("Добро пожаловать в лавку бесконечности.");
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
-
-            try {
-                execute(sendMessage);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
+            sendMes(sendMessage);
 
         }
 //--------------------------------------------------------------------------------------------
-
-
 
     }
 
 
     public String getBotUsername() {
-        return "StoreOfInfinity_bot";
+        return "@test13801380bot";
     }
 
     public String getBotToken() {
-        return "1458747209:AAGcg2SOjqD4tDBBXUM6Nzu8yMRNTC0937k";
+        return "1264269332:AAGxRkipe4LaXaGZ0xWbdsaEOnLJwFZaBCQ";
     }
 }
